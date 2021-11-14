@@ -40,4 +40,3 @@
                     SendText("[ReplayBot] | ReplayBot Starting Capture");
                 }
             }
-            ```
