@@ -42,3 +42,4 @@
                 }
             }
 ```
+> For any contributions, to open and modify the code run the MinecraftClient.csproj and you'll have access to all of the files inside of the GitHub.
