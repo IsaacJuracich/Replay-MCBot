@@ -12,7 +12,7 @@
 >
 > ![image](https://user-images.githubusercontent.com/93289395/141695669-d634e1ed-015b-4ca5-b273-8f7a64bf242d.png)
 > 
->            ```cs if (text.Contains(Init.v.m_prefix + "replay_save")) {
+>            ```csharp if (text.Contains(Init.v.m_prefix + "replay_save")) {
                 if (ReplayCapture.replay == null) {
                     SendText("[ReplayBot] | No Current Replay Running");
                 } else {
