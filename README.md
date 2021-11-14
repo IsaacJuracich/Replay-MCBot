@@ -11,3 +11,31 @@
 >The render distance of players and being able to render them will be picked up by render distance which is changeable in settings.ini
 >
 > ![image](https://user-images.githubusercontent.com/93289395/141695669-d634e1ed-015b-4ca5-b273-8f7a64bf242d.png)
+> 
+>            ```cs if (text.Contains(Init.v.m_prefix + "replay_save")) {
+                if (ReplayCapture.replay == null) {
+                    SendText("[ReplayBot] | No Current Replay Running");
+                } else {
+                    ReplayCapture.replay.CreateBackupReplay(@"replay_recordings\" + ReplayCapture.replay.GetReplayDefaultName());
+                    SendText("[ReplayBot] | ReplayBot Saving Capture");
+                }
+            }
+            if (text.Contains(Init.v.m_prefix + "replay_stop")) {
+                if (ReplayCapture.replay == null) {
+                    SendText("[ReplayBot] | No Current Replay Running");
+                } else {
+                    ReplayCapture.replay.OnShutDown();
+                    SendText("[ReplayBot] | ReplayBot Stopping Capture");
+                }   
+            }
+            if (text.Contains(Init.v.m_prefix + "replay_start")) {
+                if (ReplayCapture.replay.RecordRunning) {
+                    SendText("[ReplayBot] | Current Replay Running");
+                } else {
+                    var proc = new Process();
+                    proc.StartInfo.FileName = "MinecraftClient.exe";
+                    proc.Start();
+                    Environment.Exit(0);
+                    SendText("[ReplayBot] | ReplayBot Starting Capture");
+                }
+            }```
