@@ -14,32 +14,39 @@
 > 
 > The code below is what controls the replayBot with commands
 ```csharp 
-            if (text.Contains(Init.v.m_prefix + "replay_save")) {
-                if (ReplayCapture.replay == null) {
-                    SendText("[ReplayBot] | No Current Replay Running");
-                } else {
-                    ReplayCapture.replay.CreateBackupReplay(@"replay_recordings\" + ReplayCapture.replay.GetReplayDefaultName());
-                    SendText("[ReplayBot] | ReplayBot Saving Capture");
-                }
-            }
-            if (text.Contains(Init.v.m_prefix + "replay_stop")) {
-                if (ReplayCapture.replay == null) {
-                    SendText("[ReplayBot] | No Current Replay Running");
-                } else {
-                    ReplayCapture.replay.OnShutDown();
-                    SendText("[ReplayBot] | ReplayBot Stopping Capture");
-                }   
-            }
-            if (text.Contains(Init.v.m_prefix + "replay_start")) {
-                if (ReplayCapture.replay.RecordRunning) {
-                    SendText("[ReplayBot] | Current Replay Running");
-                } else {
-                    var proc = new Process();
-                    proc.StartInfo.FileName = "MinecraftClient.exe";
-                    proc.Start();
-                    Environment.Exit(0);
-                    SendText("[ReplayBot] | ReplayBot Starting Capture");
-                }
-            }
+ if (msg.ToLower() == Init.v.m_prefix + "replay_save") {
+                        if (ReplayCapture.replay == null) {
+                            SendText("[ReplayBot] | No Current Replay Running");
+                        } else {
+                            ReplayCapture.replay.CreateBackupReplay(@"replay_recordings\" + ReplayCapture.replay.GetReplayDefaultName());
+                            SendText("[ReplayBot] | ReplayBot Saving Capture");
+                        }
+                    }
+                    if (msg.ToLower() == Init.v.m_prefix + "replay_stop") {
+                        if (ReplayCapture.replay == null) {
+                            SendText("[ReplayBot] | No Current Replay Running");
+                        } else {
+                            ReplayCapture.replay.OnShutDown();
+                            SendText("[ReplayBot] | ReplayBot Stopping Capture");
+                        }
+                    }
+                    if (msg.ToLower() == Init.v.m_prefix + "replay_start") {
+                        if (ReplayCapture.replay.RecordRunning) {
+                            SendText("[ReplayBot] | Current Replay Running");
+                        } else {
+                            var proc = new Process();
+                            proc.StartInfo.FileName = "MinecraftClient.exe";
+                            proc.Start();
+                            Environment.Exit(0);
+                            SendText("[ReplayBot] | ReplayBot Starting Capture");
+                        }
+                    }
+                    if (msg.ToLower() == Init.v.m_prefix + "replay_nearbyplayers") {
+                        if (ReplayCapture.replay.RecordRunning) {
+                            SendText("[ReplayBot] | Current Replay Running");
+                        } else {
+
+                        }
+                    }
 ```
 > For any contributions, to open and modify the code run the MinecraftClient.csproj and you'll have access to all of the files inside of the GitHub.
