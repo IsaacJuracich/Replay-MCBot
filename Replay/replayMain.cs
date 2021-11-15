@@ -29,7 +29,7 @@ namespace MinecraftClient.Replay {
                 }
             }
             // Command Handler Call
-            CommandHandler(text);
+            CommandHandler();
         }
         public override void Initialize() {
             if (!File.Exists("settings.json")) {
@@ -46,33 +46,43 @@ namespace MinecraftClient.Replay {
             
         }
         // Command Handler Function
-        public void CommandHandler(string str) {
+        public void CommandHandler() {
             if (player != null && msg != null) {
-                if (msg.ToLower() == Init.v.m_prefix + "replay_save") {
-                    if (ReplayCapture.replay == null) {
-                        SendText("[ReplayBot] | No Current Replay Running");
-                    } else {
-                        ReplayCapture.replay.CreateBackupReplay(@"replay_recordings\" + ReplayCapture.replay.GetReplayDefaultName());
-                        SendText("[ReplayBot] | ReplayBot Saving Capture");
+                Init.refresh();
+                if (Init.v.whitelisted.Contains(player)) {
+                    if (msg.ToLower() == Init.v.m_prefix + "replay_save") {
+                        if (ReplayCapture.replay == null) {
+                            SendText("[ReplayBot] | No Current Replay Running");
+                        } else {
+                            ReplayCapture.replay.CreateBackupReplay(@"replay_recordings\" + ReplayCapture.replay.GetReplayDefaultName());
+                            SendText("[ReplayBot] | ReplayBot Saving Capture");
+                        }
                     }
-                }
-                if (msg.ToLower() == Init.v.m_prefix + "replay_stop") {
-                    if (ReplayCapture.replay == null) {
-                        SendText("[ReplayBot] | No Current Replay Running");
-                    } else {
-                        ReplayCapture.replay.OnShutDown();
-                        SendText("[ReplayBot] | ReplayBot Stopping Capture");
+                    if (msg.ToLower() == Init.v.m_prefix + "replay_stop") {
+                        if (ReplayCapture.replay == null) {
+                            SendText("[ReplayBot] | No Current Replay Running");
+                        } else {
+                            ReplayCapture.replay.OnShutDown();
+                            SendText("[ReplayBot] | ReplayBot Stopping Capture");
+                        }
                     }
-                }
-                if (msg.ToLower() == Init.v.m_prefix + "replay_start") {
-                    if (ReplayCapture.replay.RecordRunning) {
-                        SendText("[ReplayBot] | Current Replay Running");
-                    } else {
-                        var proc = new Process();
-                        proc.StartInfo.FileName = "MinecraftClient.exe";
-                        proc.Start();
-                        Environment.Exit(0);
-                        SendText("[ReplayBot] | ReplayBot Starting Capture");
+                    if (msg.ToLower() == Init.v.m_prefix + "replay_start") {
+                        if (ReplayCapture.replay.RecordRunning) {
+                            SendText("[ReplayBot] | Current Replay Running");
+                        } else {
+                            var proc = new Process();
+                            proc.StartInfo.FileName = "MinecraftClient.exe";
+                            proc.Start();
+                            Environment.Exit(0);
+                            SendText("[ReplayBot] | ReplayBot Starting Capture");
+                        }
+                    }
+                    if (msg.ToLower() == Init.v.m_prefix + "replay_nearbyplayers") {
+                        if (ReplayCapture.replay.RecordRunning) {
+                            SendText("[ReplayBot] | Current Replay Running");
+                        } else {
+
+                        }
                     }
                 }
                 player = null;

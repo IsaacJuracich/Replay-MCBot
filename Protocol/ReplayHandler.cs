@@ -11,6 +11,7 @@ using Org.BouncyCastle.Crypto.Utilities;
 using MinecraftClient.Protocol.Handlers.PacketPalettes;
 using System.Runtime.Remoting.Messaging;
 using System.Threading.Tasks;
+using MinecraftClient.Inventory.ItemPalettes;
 
 namespace MinecraftClient.Protocol
 {
@@ -326,7 +327,11 @@ namespace MinecraftClient.Protocol
                 OnPlayerSpawn(dataTypes.ReadNextUUID(p));
                 return;
             }
-
+            if (pType == PacketTypesIn.EntityMetadata) {
+                int EntityID = dataTypes.ReadNextVarInt(p);
+                Dictionary<int, object> metadata = dataTypes.ReadNextMetadata(p, itemPalette);
+                Console.WriteLine(EntityID);
+            }
             // Get client player location for calculating movement delta later
             if (pType == PacketTypesIn.PlayerPositionAndLook)
             {
