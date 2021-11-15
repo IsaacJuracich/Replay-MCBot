@@ -14,7 +14,7 @@
 > 
 > The code below is what controls the replayBot with commands
 ```csharp 
-                    if (msg.ToLower() == Init.v.m_prefix + "replay_save") {
+                   if (msg.ToLower() == Init.v.m_prefix + "replay_save") {
                         if (ReplayCapture.replay == null) {
                             SendText("[ReplayBot] | No Current Replay Running");
                         } else {
