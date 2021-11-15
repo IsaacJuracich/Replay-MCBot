@@ -12,7 +12,7 @@ namespace MinecraftClient.Replay {
         public string m_prefix;
         public ulong d_logChannelID;
         public string d_token;
-        
+        public string fchat_format;
         public Var() {
             this.replayName = null;
             this.replayBot = true;
@@ -21,6 +21,7 @@ namespace MinecraftClient.Replay {
             this.m_prefix = "";
             this.d_logChannelID = 0;
             this.d_token = "discord_token";
+            this.fchat_format = "";
         }
     }
 }

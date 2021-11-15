@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-	<LangVersion>latest</LangVersion>
+    <LangVersion>latest</LangVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
@@ -268,6 +268,7 @@
     <Compile Include="Protocol\MicrosoftAuthentication.cs" />
     <Compile Include="Protocol\ProxiedWebRequest.cs" />
     <Compile Include="Protocol\ReplayHandler.cs" />
+    <Compile Include="Replay\EasyMatch.cs" />
     <Compile Include="Replay\Init.cs" />
     <Compile Include="Replay\replayMain.cs" />
     <Compile Include="Replay\Var.cs" />
