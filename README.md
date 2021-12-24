@@ -4,8 +4,6 @@
 > 
 > Minecraft Faction Bot-Addon with accessibility to ReplayMod Recording. The bot based off of commands will handle replaymod functions (save, stop, uptime, start).
 >
-> I plan to add more configurability and more features in the future, there is no bulit in command handler as I am lazy. 
->
 > The bot will automatically create the settings.ini for the bot itself, and settings.json for the control of the replaymod name and other settings.
 >
 >The render distance of players and being able to render them will be picked up by render distance which is changeable in settings.ini
@@ -14,7 +12,11 @@
 > 
 > The code below is what controls the replayBot with commands
 ```csharp 
-                   if (msg.ToLower() == Init.v.m_prefix + "replay_save") {
+                  public void CommandHandler() {
+            if (player != null && msg != null) {
+                Init.refresh();
+                if (Init.v.whitelisted.Contains(player)) {
+                    if (msg.ToLower() == Init.v.m_prefix + "replay_save") {
                         if (ReplayCapture.replay == null) {
                             SendText("[ReplayBot] | No Current Replay Running");
                         } else {
@@ -48,5 +50,9 @@
 
                         }
                     }
+                }
+                player = null;
+                msg = null;
+            }
 ```
 > For any contributions, to open and modify the code run the MinecraftClient.csproj and you'll have access to all of the files inside of the GitHub.
